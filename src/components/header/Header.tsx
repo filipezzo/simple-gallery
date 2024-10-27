@@ -2,7 +2,12 @@ import { Camera } from "lucide-react";
 import styles from "./header.module.css";
 import { Link, useLocation } from "react-router-dom";
 
-export function Header() {
+interface HeaderProps {
+  onSearch: (text: string) => void;
+  search: string;
+}
+
+export function Header({ onSearch, search }: HeaderProps) {
   const { pathname } = useLocation();
 
   const isHome = pathname === "/";
@@ -27,6 +32,10 @@ export function Header() {
           </li>
         </ul>
         <input
+          value={search}
+          onChange={(e) => {
+            onSearch(e.target.value);
+          }}
           placeholder="Pesquise por imagens e coleções"
           className={styles.input}
         />

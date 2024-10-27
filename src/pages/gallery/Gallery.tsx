@@ -1,28 +1,25 @@
 import styles from "./gallery.module.css";
 import { products } from "../../utils/mock.ts";
 import { Product } from "../../types/product.ts";
+import { useOutletContext } from "react-router-dom";
+import { GalleryList } from "./components/GalleryList.tsx";
+
+interface LayoutContext {
+  search: string;
+  setSearch: (value: string) => void;
+}
 
 export function Gallery() {
+  const { search } = useOutletContext<LayoutContext>();
+
+  const filteredProducts = products.filter((produto: Product) =>
+    produto.productName.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <>
       <h2 className={styles.heading}>Galeria</h2>
-      <ul className={styles.list}>
-        {products.map((product: Product) => (
-          <li className={styles.item} key={product.id}>
-            <figure>
-              <img
-                className={styles.itemImg}
-                src={product.photoLink}
-                alt={`foto sobre ${product.productName}`}
-              />
-              <figcaption className={styles.imgContent}>
-                <h3>{product.productName}</h3>
-                <span className={styles.tag}>TAG</span>
-              </figcaption>
-            </figure>
-          </li>
-        ))}
-      </ul>
+      <GalleryList filteredProducts={filteredProducts} />
     </>
   );
 }
