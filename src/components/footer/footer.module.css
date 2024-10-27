@@ -1,0 +1,7 @@
+.footer {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    color: #323238;
+    font-weight: 600;
+}
