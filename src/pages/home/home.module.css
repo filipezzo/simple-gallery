@@ -1,0 +1,13 @@
+.home {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    strong {
+        text-align: center;
+        width: 100%;
+        font-size: 2rem;
+        color: #323238;
+    }
+}

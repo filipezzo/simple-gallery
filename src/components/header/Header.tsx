@@ -1,30 +1,42 @@
-import {Camera} from "lucide-react";
-import styles from './header.module.css'
+import { Camera } from "lucide-react";
+import styles from "./header.module.css";
+import { Link, useLocation } from "react-router-dom";
 
 export function Header() {
-    return (
-        <header className={styles.header}>
-            <a className={styles.logo} href="/public">
-                <Camera size={40} />
-            </a>
-            <nav className={styles.headerNav}>
-                <ul className={styles.listNav}>
-                    <li>
-                        <a>
-                            Home
-                        </a>
+  const { pathname } = useLocation();
 
-                    </li>
-                    <li>
-                        <a>Galeria</a>
-                    </li>
-                </ul>
-                <input placeholder="Pesquise por imagens e coleções" className={styles.input} />
-                <div className={styles.avatar}>
-                    <img src="https://avatars.githubusercontent.com/u/109683955?v=4" alt="imagem do usuario" />
-                </div>
-            </nav>
+  const isHome = pathname === "/";
+  const isGallery = pathname === "/gallery";
 
-        </header>
-    );
+  return (
+    <header className={styles.header}>
+      <Link className={styles.logo} to={"/"}>
+        <Camera size={40} />
+      </Link>
+      <nav className={styles.headerNav}>
+        <ul className={styles.listNav}>
+          <li>
+            <Link className={`${isHome ? "active" : ""}`} to={"/"}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className={`${isGallery ? "active" : ""}`} to={"/gallery"}>
+              Galeria
+            </Link>
+          </li>
+        </ul>
+        <input
+          placeholder="Pesquise por imagens e coleções"
+          className={styles.input}
+        />
+        <div className={styles.avatar}>
+          <img
+            src="https://avatars.githubusercontent.com/u/109683955?v=4"
+            alt="imagem do usuario"
+          />
+        </div>
+      </nav>
+    </header>
+  );
 }

@@ -1,14 +1,19 @@
-import { Header } from "./components/header/Header.tsx";
-import { Main } from "./components/main/Main.tsx";
-import { Footer } from "./components/footer/Footer.tsx";
+import { Layout } from "./layouts/Layout.tsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/home/Home.tsx";
+
+import { Gallery } from "./pages/gallery/Gallery.tsx";
 
 function App() {
   return (
-    <div className="homepage">
-      <Header />
-      <Main />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/gallery" element={<Gallery />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

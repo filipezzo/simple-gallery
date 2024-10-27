@@ -1,10 +1,10 @@
-import styles from "./main.module.css";
+import styles from "./gallery.module.css";
 import { products } from "../../utils/mock.ts";
 import { Product } from "../../types/product.ts";
 
-export function Main() {
+export function Gallery() {
   return (
-    <main className={`${styles.main} container`}>
+    <>
       <h2 className={styles.heading}>Galeria</h2>
       <ul className={styles.list}>
         {products.map((product: Product) => (
@@ -23,6 +23,6 @@ export function Main() {
           </li>
         ))}
       </ul>
-    </main>
+    </>
   );
 }
