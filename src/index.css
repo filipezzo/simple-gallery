@@ -55,3 +55,6 @@ button {
     padding-inline: 116px;
 }
 
+.active {
+    color: black;
+}
